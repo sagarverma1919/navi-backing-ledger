@@ -1,0 +1,10 @@
+def projects = [
+        ':product': [name: "$project_name", path: 'product']
+]
+
+projects.each() { key, config ->
+    include key
+    def prj = project(key)
+    prj.name = config.name
+    prj.projectDir = file("$settingsDir/$config.path")
+}
