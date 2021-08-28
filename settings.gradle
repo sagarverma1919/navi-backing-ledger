@@ -1,5 +1,6 @@
 def projects = [
-        ':product': [name: "$project_name", path: 'product']
+        ':product': [name: "banking-ledger-service", path: 'product'],
+        ':domain' : [name: "banking-ledger-domain", path: 'domain']
 ]
 
 projects.each() { key, config ->

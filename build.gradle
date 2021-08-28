@@ -1,10 +1,6 @@
 buildscript {
     repositories {
         mavenCentral()
-        jcenter()
-        dependencies {
-            classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.8.1"
-        }
     }
 }
 
@@ -12,13 +8,6 @@ allprojects {
     buildscript {
         repositories {
             mavenCentral()
-            jcenter()
-            maven {
-                url 'https://gammacapital.jfrog.io/artifactory/gamma-maven-snapshot-local/'
-            }
-            maven {
-                url 'https://gammacapital.jfrog.io/artifactory/gamma-maven-release-local/'
-            }
         }
     }
 
@@ -31,37 +20,13 @@ subprojects {
     apply plugin: 'maven'
     apply plugin: 'maven-publish'
 
-    group = 'com.gamma.capital'
+    group = 'com.navi.ledger'
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
-    publishing {
-        repositories {
-            maven {
-                name 'artifactory'
-                credentials {
-                    username = "${gamma_artifactory_user}"
-                    password = "${gamma_artifactory_password}"
-                }
-                if (project.version.endsWith('-SNAPSHOT')) {
-                    url 'https://gammacapital.jfrog.io/artifactory/gamma-maven-snapshot-local/'
-                } else {
-                    url 'https://gammacapital.jfrog.io/artifactory/gamma-maven-release-local/'
-                }
-            }
-        }
-    }
-
     repositories {
         mavenCentral()
-        jcenter()
-        maven {
-            url 'https://gammacapital.jfrog.io/artifactory/gamma-maven-snapshot-local/'
-        }
-        maven {
-            url 'https://gammacapital.jfrog.io/artifactory/gamma-maven-release-local/'
-        }
     }
 }
 
@@ -90,6 +55,7 @@ ext {
             logging: [
                     //logging
                     "org.apache.logging.log4j:log4j-api:$rev_log4j2",
+                    "org.apache.logging.log4j:log4j-web:$rev_log4j2",
                     "org.apache.logging.log4j:log4j-core:$rev_log4j2",
                     "org.apache.logging.log4j:log4j-1.2-api:$rev_log4j2",
                     "org.apache.logging.log4j:log4j-jcl:$rev_log4j2",

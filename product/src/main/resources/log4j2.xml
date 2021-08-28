@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+              <RollingRandomAccessFile name="FILE" fileName="logs/navi-backing-ledger.log" filePattern="logs/navi-backing-ledger-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS}{GMT} [%t] [%x] Level=%-5p %c{1} - %m%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="3"/>
+        </RollingRandomAccessFile>
+        <Async name="ASYNCFILE">
+            <AppenderRef ref="FILE" />
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO" additivity="false">
+            <AppenderRef ref="FILE"/>
+        </Root>
+    </Loggers>
+</Configuration>
