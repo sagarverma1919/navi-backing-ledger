@@ -53,7 +53,3 @@ public class PaymentCommand extends AbstractCommand
         registry.update(request);
     }
 }
-
-/**
- * PAYMENT BANK_NAME BORROWER_NAME LUMP_SUM_AMOUNT EMI_NO
- */

@@ -3,6 +3,8 @@ package com.navi.banking.ledger.service.handler;
 import com.navi.banking.ledger.service.service.BankLedgerService;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
@@ -13,15 +15,12 @@ import java.io.InputStreamReader;
 @Component
 public class FileProcessHandler
 {
-    private final BankLedgerService service;
+    @Autowired
+    private BankLedgerService service;
 
-    public FileProcessHandler(BankLedgerService service)
+    public void handle(String path)
     {
-        this.service = service;
-    }
-
-    public void handle(Resource resource)
-    {
+        Resource resource = new FileSystemResource(path);
         try (BufferedReader reader = new BufferedReader(
             new InputStreamReader(resource.getInputStream())))
         {

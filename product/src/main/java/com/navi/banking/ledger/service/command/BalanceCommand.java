@@ -63,14 +63,9 @@ public class BalanceCommand extends AbstractCommand
         int totalMonthlyInstallmentsPaid =
             request.getTotalInstallments() * loan.getInstallmentsAmount();
 
-        if(totalLumpSumAmountPaid + totalMonthlyInstallmentsPaid > loan.getTotalAmountToBePaid())
-        {
-            response.setTotalAmountPaid(loan.getTotalAmountToBePaid());
-        }
-        else
-        {
-            response.setTotalAmountPaid(totalLumpSumAmountPaid + totalMonthlyInstallmentsPaid);
-        }
+        response.setTotalAmountPaid(
+            Math.min(totalLumpSumAmountPaid + totalMonthlyInstallmentsPaid,
+                     loan.getTotalAmountToBePaid()));
 
         response.setTotalMonthlyInstallmentsRemaining(
             (int) Math.ceil((double) (loan.getTotalAmountToBePaid() - response.getTotalAmountPaid())
