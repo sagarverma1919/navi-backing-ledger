@@ -1,5 +1,5 @@
 def projects = [
-        ':product': [name: "banking-ledger-service", path: 'product'],
+        ':product': [name: "geektrust", path: 'product'],
         ':domain' : [name: "banking-ledger-domain", path: 'domain']
 ]
 
